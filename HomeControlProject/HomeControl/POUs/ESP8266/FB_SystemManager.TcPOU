@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_SystemManager" Id="{41ba94ab-514e-4adb-b068-8b35ea87ef43}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SystemManager
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Devices : ARRAY [1..100] OF POINTER TO FB_Device;
+	nRegisteredDevice :INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="ExecuteDevices" Id="{d1d33a3a-ca60-465f-8770-ad7b1efd40a6}">
+      <Declaration><![CDATA[METHOD ExecuteDevices : BOOL
+VAR
+	idx: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR idx :=1 TO nRegisteredDevice DO
+	Devices[idx]^.Execute();
+END_FOR
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FilterDeviceMacAddr" Id="{9ebd669e-75d0-4aed-8a2e-b8e2bc1a84bc}">
+      <Declaration><![CDATA[METHOD FilterDeviceMacAddr : POINTER TO FB_Device;
+VAR_INPUT
+	macAdr: STRING;
+END_VAR
+
+VAR
+	idx: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR idx := 1 TO nRegisteredDevice DO
+	IF Devices[idx]^.MacAddr = macAdr THEN
+		FilterDeviceMacAddr := Devices[idx];
+		RETURN;
+	END_IF
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="NumberOfRegisteredDevice" Id="{6b2cec84-de91-4179-98ea-1f915b3d7b80}">
+      <Declaration><![CDATA[PROPERTY NumberOfRegisteredDevice : int]]></Declaration>
+      <Get Name="Get" Id="{1fb13df7-4ec2-4461-82a5-ea328342db46}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="registerDevice" Id="{69150bb2-69da-4382-bcc6-522f37178f2b}">
+      <Declaration><![CDATA[METHOD registerDevice : BOOL
+VAR_INPUT
+	pDevice : REFERENCE TO FB_Device;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[nRegisteredDevice := nRegisteredDevice + 1;
+Devices[nRegisteredDevice] := ADR(pDevice);
+
+ADSLOGSTR(msgCtrlMask := ADSLOG_MSGTYPE_ERROR, msgFmtStr := 'Registered Instance: %s', strArg := pDevice.Name);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="UnregisterDevice" Id="{270e34d5-79e4-4acc-9a41-054587a328b2}">
+      <Declaration><![CDATA[METHOD UnregisterDevice : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_ESP8266" Id="{c029fd6a-53dc-40ab-9b28-1e5791e21d04}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ESP8266
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	fbSystemManager : FB_SystemManager;
+	fbMQTT :FB_MQTT;
+	fbSerialCom : FB_SerialCom; 
+	MqttMessageAvailable: BOOL;
+	
+	//testDevices
+	fbAcMitsubishi: FB_AC_Mitsubishi;
+	fbDoorSensor: FB_BinarySensor;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF InitModule() THEN
+	fbSystemManager.ExecuteDevices();
+	IF fbSerialCom.read() THEN
+		DeserializeMessage(fbSerialCom.macAddr,fbSerialCom.message,fbSerialCom.length);
+	END_IF	
+END_IF
+]]></ST>
+    </Implementation>
+    <Method Name="DeserializeMessage" Id="{2b7348b2-80b3-4ee0-a064-e5d7dd93bc2c}">
+      <Declaration><![CDATA[METHOD DeserializeMessage : BOOL
+VAR_INPUT
+	MacAddr: STRING;
+	message : STRING;
+	length: INT;
+END_VAR
+VAR
+	device : POINTER TO FB_Device;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Deserialize Message
+device := fbSystemManager.FilterDeviceMacAddr(MacAddr);
+IF device<> 0 THEN
+	device^.HandleMessage(message);
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="InitModule" Id="{d30995ac-4157-4278-b05d-1c5dc42f90dc}">
+      <Declaration><![CDATA[METHOD InitModule : BOOL
+VAR_INPUT
+END_VAR
+VAR_INST
+	idx: INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[case idx of
+	0:
+		fbSerialCom.write('InitBroadcast');
+		idx := 1;
+	1:
+		IF fbSerialCom.read()THEN
+			fbAcMitsubishi.Id := 1;
+			fbAcMitsubishi.MacAddr:='16';
+			fbAcMitsubishi.Name:= 'Klima';
+			fbSystemManager.registerDevice(fbAcMitsubishi);
+			
+			fbDoorSensor.Id := 2;
+			fbDoorSensor.MacAddr:='26';
+			fbDoorSensor.Name:= 'Kapi Sensor';
+			fbSystemManager.registerDevice(fbDoorSensor);
+			idx := 2;
+		END_IF
+	2:
+		InitModule := TRUE;
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SerializeMessage" Id="{3c81a221-a707-433f-b592-ee83dca8a8b0}">
+      <Declaration><![CDATA[METHOD SerializeMessage : BOOL
+VAR_INPUT
+	topic: STRING;
+	payload: STRING;
+	length: INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//convert json and send
+fbSerialCom.write('test');]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

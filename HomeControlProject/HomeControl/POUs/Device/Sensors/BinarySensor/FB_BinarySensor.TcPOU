@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_BinarySensor" Id="{89e1e01f-36dd-4a6d-bc09-97732e6d9a41}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BinarySensor EXTENDS FB_SensorBase
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="HandleMessage" Id="{2a5c1ba4-da33-45bc-b2dd-dd45456c17bf}">
+      <Declaration><![CDATA[METHOD HandleMessage : BOOL
+VAR_INPUT
+	message :STRING;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF message='1' THEN
+	ADSLOGSTR(msgCtrlMask := ADSLOG_MSGTYPE_ERROR, msgFmtStr := 'Door Opened', strArg := '');
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

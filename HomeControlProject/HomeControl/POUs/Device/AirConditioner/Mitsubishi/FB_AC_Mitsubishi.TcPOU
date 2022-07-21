@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_AC_Mitsubishi" Id="{a48e41b7-d9d4-41f3-b36e-7cc65cd7c5f3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_AC_Mitsubishi EXTENDS FB_AirConditionerBase
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="HandleMessage" Id="{b55e9228-c000-463b-b230-3ca225c0cf46}">
+      <Declaration><![CDATA[METHOD HandleMessage : BOOL
+VAR_INPUT
+	message :STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF message='turnedOff' THEN
+	ADSLOGSTR(msgCtrlMask := ADSLOG_MSGTYPE_ERROR, msgFmtStr := 'Mitsubishi Air Conditioner Turned Off', strArg := '');
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

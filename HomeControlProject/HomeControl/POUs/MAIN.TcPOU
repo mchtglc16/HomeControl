@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="MAIN" Id="{1d413f03-33bf-4cb1-8750-5b7f72dc664c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	fbESP01 : FB_ESP01;
+	fbESP8266 : FB_ESP8266;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Test
+(*
+1- fbESP8266 içindeki fbSerialCom.readTest değişkenini trueya çekerse register olurlar.
+
+*)
+fbESP8266();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

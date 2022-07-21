@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_Device" Id="{cb85e2ae-21b3-435b-a225-67b124276f1a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT FB_Device
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	_id: INT;
+	_macAddr: STRING;
+	_name: STRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{9c14b4fa-bdb7-4bcb-b64f-1dbb6dbdaf96}">
+      <Declaration><![CDATA[METHOD Execute : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HandleMessage" Id="{3a6d15be-5bcb-40f2-83b5-ce980061b6e3}">
+      <Declaration><![CDATA[METHOD ABSTRACT HandleMessage : BOOL
+VAR_INPUT
+	message :STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Id" Id="{3f38f513-83f3-4827-9447-72e1332fa814}">
+      <Declaration><![CDATA[PROPERTY Id : int]]></Declaration>
+      <Get Name="Get" Id="{fc036034-9597-42fe-886f-534d0986ab9a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Id := _id;
+]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{2ae939e7-c151-4752-91fb-e3162479a58f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_id := Id;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="MacAddr" Id="{e58f8f9b-7d62-43ef-b6da-581704d5ade7}">
+      <Declaration><![CDATA[PROPERTY MacAddr : String]]></Declaration>
+      <Get Name="Get" Id="{bbcb30d5-5e1a-4a02-899e-79bba4fe1ba2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MacAddr := _macAddr;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{ee15c46b-cb9b-4fd6-a28f-fc4f5be54885}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_macAddr := MacAddr;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Name" Id="{601f1de7-893d-46ed-a371-1017643aef96}">
+      <Declaration><![CDATA[PROPERTY Name : String]]></Declaration>
+      <Get Name="Get" Id="{45048d88-f71d-480e-94d0-44de7c8bb57f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Name := _name;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{81a4c27d-4398-49ef-a436-0ef93ac4f1db}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_name := Name;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="SendMessage" Id="{874ad770-b14b-499c-b14e-5ab402c7a0b9}">
+      <Declaration><![CDATA[METHOD SendMessage : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

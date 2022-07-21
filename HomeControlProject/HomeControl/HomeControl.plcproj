@@ -1,0 +1,125 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2ad2c10b-1e8f-4871-ba01-ec563cc7fbc9}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>HomeControl</Name>
+    <ProgramVersion>3.1.4023.0</ProgramVersion>
+    <Application>{c6de12a6-a355-447d-967f-329810a18fc1}</Application>
+    <TypeSystem>{4896eb1d-6b96-4975-806b-8a1bdb69cb94}</TypeSystem>
+    <Implicit_Task_Info>{33d62ad4-fa61-4350-a209-b801a01a219d}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{b592fbd0-8af7-446b-9059-5bc7b8816bee}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{ec00d801-78fb-4e01-9c1b-2f0b7c5dac80}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{995678aa-8973-4343-871d-ab2ec10439e4}</LibraryReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Communication\ESPNow\FB_ESPNow.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Communication\MQTT\FB_MQTT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Communication\SerialCom\FB_SerialCom.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Device\AirConditioner\FB_AirConditionerBase.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Device\AirConditioner\Mitsubishi\FB_AC_Mitsubishi.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Device\AirConditioner\Siemens\FB_AC_Siemens.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Device\AirConditioner\Siemens\ST_AC_Siemens.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Device\FB_Device.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Device\Sensors\BinarySensor\FB_BinarySensor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Device\Sensors\FB_SensorBase.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Device\Sensors\TemparatureSensor\FB_TemperatureSensor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\ESP01\FB_ESP01.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\ESP8266\FB_ESP8266.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\ESP8266\FB_SystemManager.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DUTs" />
+    <Folder Include="GVLs" />
+    <Folder Include="POUs\Communication\ESPNow" />
+    <Folder Include="POUs\Communication\MQTT" />
+    <Folder Include="POUs\Communication\SerialCom" />
+    <Folder Include="POUs\Device\AirConditioner" />
+    <Folder Include="POUs\Device\AirConditioner\Mitsubishi" />
+    <Folder Include="POUs\Device\AirConditioner\Siemens" />
+    <Folder Include="POUs\Device\Sensors" />
+    <Folder Include="POUs\Device\Sensors\BinarySensor" />
+    <Folder Include="POUs\Device\Sensors\TemparatureSensor" />
+    <Folder Include="POUs\ESP8266" />
+    <Folder Include="POUs\ESP01" />
+    <Folder Include="POUs\Device" />
+    <Folder Include="POUs\Communication" />
+    <Folder Include="VISUs" />
+    <Folder Include="POUs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HomeControl.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+  <Data>
+    <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" />
+      <d n="Values" t="Hashtable" />
+    </o>
+  </Data>
+  <TypeList>
+    <Type n="Hashtable">System.Collections.Hashtable</Type>
+    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+    <Type n="String">System.String</Type>
+  </TypeList>
+</XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

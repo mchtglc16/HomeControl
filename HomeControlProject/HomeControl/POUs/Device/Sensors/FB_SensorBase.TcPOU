@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_SensorBase" Id="{7f3b2266-956f-4033-aaea-f3c25f958529}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SensorBase EXTENDS FB_Device
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="HandleMessage" Id="{402cfd41-6c77-4bd5-aafc-0d7a618f5f85}">
+      <Declaration><![CDATA[METHOD  HandleMessage : BOOL
+VAR_INPUT
+	message :STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

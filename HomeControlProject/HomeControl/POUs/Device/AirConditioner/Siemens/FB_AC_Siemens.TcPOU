@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_AC_Siemens" Id="{2be6e881-c616-476b-83e6-44913f6addf2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_AC_Siemens EXTENDS FB_AirConditionerBase
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{f82cfefe-230e-41a1-b485-e0ada534c4a2}">
+      <Declaration><![CDATA[METHOD Execute : BOOL
+VAR_INPUT
+END_VAR
+VAR
+	TurnOnCommand: BOOL;
+	TurnOffCommand: BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[PublishDeviceData();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HandleMessage" Id="{684407c3-d795-44f4-9757-8aff5132b802}">
+      <Declaration><![CDATA[METHOD HandleMessage : BOOL
+VAR_INPUT
+	message: STRING;
+END_VAR
+VAR
+	TurnOnCommand: BOOL;
+	TurnOffCommand: BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TurnOffCommand THEN
+	TurnOff();
+ELSIF TurnOnCommand THEN
+	TurnOn();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="PublishDeviceData" Id="{3ad1dc14-ef6f-4924-9dad-d013aa7b6f38}">
+      <Declaration><![CDATA[METHOD PublishDeviceData : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TurnOff" Id="{248872b0-c69a-479c-be6f-000d0614fdb8}">
+      <Declaration><![CDATA[METHOD TurnOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TurnOn" Id="{e5beaa9f-4fbb-4f3b-a7ed-57c55260dc86}">
+      <Declaration><![CDATA[METHOD TurnOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//turn on Struct created]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
